@@ -45,15 +45,19 @@ type Configurations struct {
 func main() {
 	var conf = Configurations{Title: "Setting"}
 	cmd := exec.Command("/bin/sh", "-c", "mkdir -p ~/.cosmo-nodes")
-	cmd2 := exec.Command("/bin/sh", "-c", "cp ~/cosmonodes-manager/config.toml ~/.cosmo-nodes/config.toml")
-	err := cmd2.Run()
+	cmd1 := exec.Command("/bin/sh", "-c", "cp ~/cosmonodes-manager/config.toml ~/.cosmo-nodes/config.toml")
+	err := cmd.Run()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	err = cmd1.Run()
 	if err != nil {
 		fmt.Println(err)
 	}
 	cf, err := os.Open("~/.cosmo-nodes/config.toml")
 	if err != nil {
 		// failed to create/open the file
-		err := cmd.Run()
 		if err != nil {
 			fmt.Println(err)
 		}
