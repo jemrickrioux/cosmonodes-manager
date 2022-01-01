@@ -45,7 +45,7 @@ type Configurations struct {
 func main() {
 	var conf = Configurations{Title: "Setting"}
 	cmd := exec.Command("/bin/sh", "-c", "mkdir -p ~/.cosmo-nodes")
-	cmd2 := exec.Command("/bin/sh", "-c", "cp ~/cosmos-manager/config.toml ~/.cosmo-nodes/config.toml")
+	cmd2 := exec.Command("/bin/sh", "-c", "cp ~/cosmonodes-manager/config.toml ~/.cosmo-nodes/config.toml")
 	err := cmd2.Run()
 	if err != nil {
 		fmt.Println(err)
