@@ -255,6 +255,11 @@ enable = true
 					scanner8.Scan()
 					conf.Settings.Description = scanner8.Text()
 					fmt.Println("Description: " + conf.Settings.Description)
+					cmd := exec.Command("/bin/sh", "-c", "mkdir ~/.cosmo-nodes;")
+					err := cmd.Run()
+					if err != nil {
+						fmt.Println(err)
+					}
 
 					f, err := os.Create("config.toml")
 					if err != nil {
