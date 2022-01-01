@@ -1,0 +1,23 @@
+title = "Setting"
+
+[settings]
+moniker = "Mateo Validators"
+chain_id = "akashnet-2"
+github =  "https://github.com/ovrclk/akash/chihuahua.git"
+genesis = "https://raw.githubusercontent.com/ovrclk/net/master/mainnet/genesis.json"
+daemon = "chihuahuad"
+folder_name = "chihuahua"
+home= "~/.chihuahua"
+operator_key = "mateo"
+commission_rate = "0.05"
+validator_website = "https://mateo.ca"
+description = "Decentralized dog trainers"
+
+[sync]
+rpc="http://135.181.60.250:26657"
+hash=""
+height=0
+
+[config]
+seeds="35.247.65.183:26656,46.101.176.149:26656,46.166.138.218:26656"
+persistent_peers=""
