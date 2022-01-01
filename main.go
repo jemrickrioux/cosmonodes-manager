@@ -57,7 +57,6 @@ func main() {
 		if err != nil {
 			fmt.Println(err)
 		}
-		cf, _ = os.Open("~/.cosmo-nodes/config.toml")
 
 	}
 	if err := toml.NewDecoder(cf).Decode(&conf); err != nil {
