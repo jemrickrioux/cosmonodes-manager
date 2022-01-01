@@ -44,10 +44,16 @@ type Configurations struct {
 
 func main() {
 	var conf = Configurations{Title: "Setting"}
+	cmd := exec.Command("/bin/sh", "-c", "mkdir -p ~/.cosmo-nodes")
 	cf, err := os.Open("~/.cosmo-nodes/config.toml")
 	if err != nil {
 		// failed to create/open the file
-		log.Fatal(err)
+		err := cmd.Run()
+		if err != nil {
+			fmt.Println(err)
+		}
+		cf, _ = os.Open("~/.cosmo-nodes/config.toml")
+
 	}
 	if err := toml.NewDecoder(cf).Decode(&conf); err != nil {
 		// failed to encode
