@@ -44,7 +44,7 @@ type Configurations struct {
 
 func main() {
 	var conf = Configurations{Title: "Setting"}
-	cf, err := os.Open("./config.toml")
+	cf, err := os.Open("~/.cosmo-nodes/config.toml")
 	if err != nil {
 		// failed to create/open the file
 		log.Fatal(err)
@@ -59,12 +59,8 @@ func main() {
 		log.Fatal(err)
 
 	}
-	flags := []cli.Flag{
-		&cli.StringFlag{Name: "load", Value: "./config.toml", Usage: "Load config file"},
-	}
 
 	app := &cli.App{
-		Flags: flags,
 		Commands: []*cli.Command{
 			{
 				Name:    "utils",
@@ -261,7 +257,7 @@ enable = true
 						fmt.Println(err)
 					}
 
-					f, err := os.Create("config.toml")
+					f, err := os.Create("~/.cosmo-nodes/config.toml")
 					if err != nil {
 						// failed to create/open the file
 						log.Fatal(err)
