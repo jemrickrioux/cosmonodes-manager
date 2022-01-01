@@ -3,7 +3,7 @@ title = "Setting"
 [settings]
 moniker = "Mateo Validators"
 chain_id = "akashnet-2"
-github =  "https://github.com/ovrclk/akash/chihuahua.git"
+github =  "https://github.com/ovrclk/akash/"
 genesis = "https://raw.githubusercontent.com/ovrclk/net/master/mainnet/genesis.json"
 daemon = "chihuahuad"
 folder_name = "chihuahua"
