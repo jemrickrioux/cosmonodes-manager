@@ -44,35 +44,6 @@ type Configurations struct {
 
 func main() {
 	var conf = Configurations{Title: "Setting"}
-	cmd := exec.Command("/bin/sh", "-c", "mkdir -p ~/.cosmo-nodes")
-	cmd1 := exec.Command("/bin/sh", "-c", "cp ~/cosmonodes-manager/config.toml ~/.cosmo-nodes/config.toml")
-	err := cmd.Run()
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	err = cmd1.Run()
-	if err != nil {
-		fmt.Println(err)
-	}
-	cf, err := os.Open("~/.cosmo-nodes/config.toml")
-	if err != nil {
-		// failed to create/open the file
-		if err != nil {
-			fmt.Println(err)
-		}
-
-	}
-	if err := toml.NewDecoder(cf).Decode(&conf); err != nil {
-		// failed to encode
-		fmt.Println("Not decoded")
-		log.Fatal(err)
-	}
-	if err := cf.Close(); err != nil {
-		// failed to close the file
-		log.Fatal(err)
-
-	}
 
 	app := &cli.App{
 		Commands: []*cli.Command{
@@ -202,6 +173,33 @@ enable = true
 					return nil
 				},
 			},
+			{
+				Name: "init",
+				Before: func(c *cli.Context) error {
+					_, err := os.Create("~/.cosmo-nodes/config.toml")
+					if err != nil {
+						fmt.Println(err)
+					}
+					return nil
+				},
+				Aliases: []string{"in"},
+				Usage:   "Init the folders",
+				Action: func(c *cli.Context) error {
+					cmd := exec.Command("/bin/sh", "-c", "mkdir -p ~/.cosmo-nodes")
+					cmd1 := exec.Command("/bin/sh", "-c", "cp ~/cosmonodes-manager/config.toml ~/.cosmo-nodes/config.toml")
+					err := cmd.Run()
+					if err != nil {
+						fmt.Println(err)
+					}
+
+					err = cmd1.Run()
+					if err != nil {
+						fmt.Println(err)
+					}
+
+					return nil
+				},
+			},
 
 			{
 				Name:    "config",
@@ -271,7 +269,7 @@ enable = true
 						fmt.Println(err)
 					}
 
-					f, err := os.Create("~/.cosmo-nodes/config.toml")
+					f, err := os.Open("/.cosmo-nodes/config.toml")
 					if err != nil {
 						// failed to create/open the file
 						log.Fatal(err)
